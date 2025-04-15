@@ -1,0 +1,152 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <h1>Hidden word generator</h1>
+    <div class="content">
+        <div class="settings">
+            <h2>Actions:</h2>
+            <div id="actions">
+                <button onclick="regenerate()">REGENERATE!</button>
+                <button class="button-link" onclick="print()">PRINT</button>
+            </div>
+
+            <div class="form-row">
+                <div class="form-item">
+                    <label for="export-import">Export/Import</label>
+                    <input id="export-import" data-no-regen>
+                </div>
+            </div>
+            <h2>Display:</h2>
+            <div class="form-row">
+                <div class="form-item">
+                    <label for="cell-edge">Cell Edge</label>
+                    <input id="cell-edge" type="number" value="32" min="1" max="999" data-no-regen>
+                </div>
+                <div class="form-item">
+                    <label for="border-width">Border width</label>
+                    <input id="border-width" type="number" value="1" min="0" max="999" data-no-regen>
+                </div>
+                <div class="form-item">
+                    <label for="border-color">Border color</label>
+                    <input id="border-color" type="color" value="#EEEEEE" data-no-regen>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-item">
+                    <label for="font-size">Font Size</label>
+                    <input id="font-size" type="number" value="32" min="1" max="999" data-no-regen>
+                </div>
+                <div class="form-item">
+                    <label for="font-dropdown">Font</label>
+                    <select id="font-dropdown" data-no-regen>
+                        <option>Arial</option>
+                        <option>Verdana</option>
+                        <option>Tahoma</option>
+                        <option>Trebuchet MS</option>
+                        <option>Times New Roman</option>
+                        <option>Georgia</option>
+                        <option>Courier New</option>
+                        <option>Brush Script MT</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label for="font-family">Font</label>
+                    <input id="font-family" type="text" value="Arial" data-no-regen>
+                </div>
+                <div class="form-item">
+                    <label for="font-color">Font color</label>
+                    <input id="font-color" type="color" value="#000000" data-no-regen>
+                </div>
+            </div>
+            <h2>Options:</h2>
+            <div class="form-row">
+                <div class="form-item">
+                    <label for="width">Width</label>
+                    <input id="width" type="number" value="8" min="1" max="50">
+                </div>
+                <div class="form-item">
+                    <label for="height">Height</label>
+                    <input id="height" type="number" value="8" min="1" max="50">
+                </div>
+            </div>
+            <div class="form-item">
+                <label for="secret">Secret</label>
+                <input id="secret" value=".">
+            </div>
+            <div class="form-item">
+                <label for="secret">Secret Behavior</label>
+                <select id="secret-mode">
+                    <option value="fill-once">Insert once at unused slots</option>
+                    <option value="fill">Insert repeatedly at unused slots</option>
+                    <option value="random">Insert random characters</option>
+                </select>
+            </div>
+            <div class="form-item">
+                <input id="auto-regen" type="checkbox" data-no-regen>
+                <label for="auto-regen" class="checkbox">Auto regenerate on change</label>
+            </div>
+            <h2>Words:</h2>
+            <div class="word-row">
+                <div class="form-item">
+                    <label>Word</label>
+                    <input class="word">
+                </div>
+                <div class="form-item">
+                    <label>Dirs</label>
+                    <select class="dirs">
+                        <option value="0 1 2 3 5 6 7 8">All</option>
+                        <option value="0 2 6 8">&searr; &swarr; &nearr; &nwarr;</option>
+                        <option value="1 3 5 7">&rarr; &darr; &larr; &uarr; </option>
+                        <option value="5 7 8">&rarr; &searr; &darr;</option>
+                        <option value="5 7">&rarr; &darr;</option>
+                        <option value="5">&rarr;</option>
+                        <option value="7">&darr;</option>
+                        <option value="8">&searr;</option>
+                        <option value="2">&nearr;</option>
+                        <option value="6">&swarr;</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>Repeats</label>
+                    <input type="number" min="1" max="99" class="repeats">
+                </div>
+                <a title="Disable/enable the word" onclick="pauseWord(this)">&#9208;</a>
+                <a title="Remove the word" onclick="deleteWord(this, true)">&#10060;</a>
+            </div>
+            <button onclick="addWord(); readForms()">Add word</button>
+        </div>
+
+        <div id="words-table-container">
+            <div style="position: relative">
+                <div id="words-table" class="table">
+                </div>
+                <div id="status-notice">
+                    <p>Generating...</p>
+                </div>
+                <div id="regenerate-notice">
+                    <div>
+                        <h2>Options were changed</h2>
+                        <p>Click the button below to generate a new Word Search.</p>
+                        <button class="regenerate" onclick="regenerate()">Regenerate</button>
+                        <button class="hide" onclick="hideNotice()">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./regenerator.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
