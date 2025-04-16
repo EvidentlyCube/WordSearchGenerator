@@ -23,7 +23,24 @@ body {
 
 h1 {
     text-align: center;
-    margin: 0 0 0.25em;
+    margin: 0 0 0.05em;
+}
+
+#subtitle {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0 0 0.9em;
+    font-size: 0.7rem;
+}
+
+#subtitle span {
+    width: 200px;
+    text-align: center;
+}
+
+#subtitle span:first-child {
+    text-align: right;
 }
 
 #actions {
@@ -293,6 +310,7 @@ button.button-link:hover {
     align-items: flex-start;
     justify-content: center;
     position: relative;
+    padding-top: 2em;
 }
 
 #words-table {
